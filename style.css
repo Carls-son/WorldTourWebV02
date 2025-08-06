@@ -1,3 +1,41 @@
 * {
   outline: 2px solid red;
 }
+:root {
+    --color-primary: #D21F3C;
+    --color-neutral-light: #F1F2F4;
+    --color-neutral-dark: #1D1A20;
+    --color-button-yellow: #FFD700;
+}
+@font-face {
+    font-family: 'Saira';
+    src: url('fonts/SairaCondensed-Bold.ttf');
+    
+}
+body {
+    margin: 20px;
+    background-image: url('images/IMG_2534.PNG');
+    background-size: 125%;
+    background-position: center;
+    background-attachment: fixed;
+}
+.main-container {
+    background-color: var(--color-primary);
+    justify-content: center; 
+    align-items: center;
+    /* display: flex; */
+
+}
+.title-container {
+
+}
+
+.flex-container {
+
+}
+.input-container {
+
+}
+.checkBox-container {
+
+}
