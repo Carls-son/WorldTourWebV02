@@ -1,4 +1,5 @@
 * {
+    /* Just to get an idea of where the containers are */
   outline: 2px solid red;
 }
 :root {
@@ -13,7 +14,10 @@
     
 }
 body {
-    margin: 20px;
+    font-family: 'Saira', sans-serif;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
     background-image: url('images/IMG_2534.PNG');
     background-size: 125%;
     background-position: center;
@@ -21,21 +25,102 @@ body {
 }
 .main-container {
     background-color: var(--color-primary);
-    justify-content: center; 
-    align-items: center;
-    /* display: flex; */
-
+    padding: 20px;
+    border-radius: 8px;
+    flex-direction: column;
+    padding-left: 48px;
+    padding-right: 48px;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
+}
+.main-container div {
+    margin-top: 20px;
 }
 .title-container {
-
+    padding: 20px;
+    background-color: #1D1A20b3;
+    border-radius: 16px;
 }
-
+.line {
+    background-color: var(--color-neutral-light);
+    opacity: .7;
+    height: 2px;
+}
+.select-container {
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+    padding: 2%;
+}
+.select-container select {
+    font-family: 'Saira', sans-serif;
+    font-size: large;
+    text-align: center;
+    margin-right: 16px;
+    padding: 2%;
+    background-color: #1D1A20b3;
+    border-radius: 5px;
+    border: #1D1A20b3;
+    color: var(--color-neutral-light)
+}
 .flex-container {
-
+    display: flex;
+    justify-content: center;
 }
 .input-container {
-
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+.stats {
+    display: flex;
+    font-size: large;
+    text-align: center;
+}
+#elims {
+    font-family: 'Saira', sans-serif;
+    font-size: large;
+    text-align: center;
+    margin-right: 16px;
+    padding: 2%;
+    background-color: #1D1A20b3;
+    border-radius: 5px;
+    border: #1D1A20b3;
+    color: var(--color-neutral-light);
+    width: 50px;
+}
+#assists {
+    width: 50px;
+    text-align: right;
+}
+#deaths {
+    width: 50px;
+    text-align: right;
+}
+#revives {
+    width: 50px;
+    text-align: right;
 }
 .checkBox-container {
-
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+label {
+    color: var(--color-neutral-light);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+h1 {
+    color: var(--color-neutral-light);
+    opacity: 1;
+    text-align: center;
+}
+h2 {
+    color: var(--color-neutral-light);
+    text-align: center;
+}
+h3 {
+    color: var(--color-neutral-light);
+    text-align: center;
 }
