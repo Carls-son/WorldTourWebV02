@@ -109,7 +109,14 @@ input[type="number"]::-webkit-outer-spin-button {
 .checkBox-container {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding-top: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.checkBox-container input {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
 }
 .button-container {
     display: flex;
@@ -131,6 +138,25 @@ input[type="number"]::-webkit-outer-spin-button {
     padding-top: 0px;
     color: var(--color-neutral-light);
 }
+#favorite-weapon {
+    background-color: #1D1A20b3;
+    border-radius: 5px;
+}
+.stats-container {
+    background-color: var(--color-neutral-light);
+}
+.stats-grid-4col {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+.stats-grid-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
 label {
     color: var(--color-neutral-light);
     font-size: 1.2em;
@@ -148,4 +174,7 @@ h2 {
 h3 {
     color: var(--color-neutral-light);
     text-align: center;
+    background-color: #1D1A20b3;
+    border-radius: 5px;
+    padding: 8px;
 }
