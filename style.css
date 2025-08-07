@@ -1,6 +1,6 @@
 * {
     /* Just to get an idea of where the containers are */
-  outline: 2px solid red;
+  /* outline: 2px solid red; */
 }
 :root {
     --color-primary: #D21F3C;
@@ -71,13 +71,9 @@ body {
     justify-content: center;
     flex-direction: column;
     padding: 20px;
+    padding-top: 0px;
 }
-.stats {
-    display: flex;
-    font-size: large;
-    text-align: center;
-}
-#elims {
+.input-container input {
     font-family: 'Saira', sans-serif;
     font-size: large;
     text-align: center;
@@ -89,22 +85,40 @@ body {
     color: var(--color-neutral-light);
     width: 50px;
 }
-#assists {
-    width: 50px;
+.stats label {
+    margin-top: 10px;
+    margin-right: 10px;
+    min-width: 50px;
     text-align: right;
 }
-#deaths {
-    width: 50px;
-    text-align: right;
-}
-#revives {
-    width: 50px;
-    text-align: right;
+.stats {
+    display: flex;
+    font-size: large;
+    text-align: center;
+    padding: 5px;
+    margin-right: 5px;
+    
 }
 .checkBox-container {
     display: flex;
     flex-direction: column;
     padding: 20px;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.submit-btn {
+    font-family: 'Saira', sans-serif;
+    font-size: large;
+    text-align: center;
+    padding: 10px 20px;
+    background-color: var(--color-button-yellow);
+    border-radius: 5px;
+    border: none;
+    color: var(--color-neutral-dark);
+    cursor: pointer;
 }
 label {
     color: var(--color-neutral-light);
