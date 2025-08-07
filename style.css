@@ -1,6 +1,6 @@
 * {
     /* Just to get an idea of where the containers are */
-  /* outline: 2px solid red; */
+  outline: 2px solid red;
 }
 :root {
     --color-primary: #D21F3C;
@@ -81,9 +81,16 @@ body {
     padding: 2%;
     background-color: #1D1A20b3;
     border-radius: 5px;
-    border: #1D1A20b3;
+    border: none;
     color: var(--color-neutral-light);
     width: 50px;
+    appearance: none;
+    -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 .stats label {
     margin-top: 10px;
@@ -119,6 +126,10 @@ body {
     border: none;
     color: var(--color-neutral-dark);
     cursor: pointer;
+}
+.dynamic-container {
+    padding-top: 0px;
+    color: var(--color-neutral-light);
 }
 label {
     color: var(--color-neutral-light);

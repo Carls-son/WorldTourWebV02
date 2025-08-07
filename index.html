@@ -57,36 +57,28 @@
                 <div class="input-container">
                     <div class="stats">
                         <label for="elims">E</label>
-                        <input id="elims" type="number" required>
+                        <input id="elims" name="elims" type="number" required>
                     </div>
                     <div class="stats">
                         <label>A</label>
-                        <input id="assists" type="number" required>
+                        <input id="assists" name="assists" type="number" required>
                     </div>
                     <div class="stats">
                         <label>D</label>
-                        <input id="deaths" type="number" required>
+                        <input id="deaths" name="deaths" type="number" required>
                     </div>
                     <div class="stats">
                         <label>R</label>
-                        <input id="revives" type="number" required>
+                        <input id="revives" name="revives" type="number" required>
                     </div>
                 </div>
                 <!-- Num of checkboxes based on Class -->
                 <div class="checkBox-container">
                     <h3>WEAPONS USED (MAX 5)</h3>
-                    <div class="dynamic-container">
+                    <div class="dynamic-container" id="favorite-weapon">
                         <!-- Populate this div with checkboxes depending on what class is selected -->
+                        <h3>SELECT A CLASS</h3>
                     </div>
-                    <input type="checkbox">
-                    <label for="">M60</label>
-                    <input type="checkbox">
-                    <input type="checkbox">
-                    <input type="checkbox">
-                    <input type="checkbox">
-                    <input type="checkbox">
-                    <input type="checkbox">
-                    <input type="checkbox">
                 </div>
             </div>
             
@@ -109,6 +101,7 @@
                 <h3>
                     STATS
                 </h3>
+                <div id="summary"></div>
             </div>
 
         </div>
