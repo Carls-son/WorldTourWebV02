@@ -16,7 +16,7 @@
         <div class="line"></div>
 
         <!-- Inputting and Submiiting data -->
-        <form id="form">
+        <form id="form" class="form-container">
             <div class="select-container" >
                 <select name="stadium" id="stadium" required>
                     <option value="">STADIUM</option>
@@ -30,7 +30,6 @@
                     <option value="Skyway Stadium">Skyway Stadium</option>
                     <option value="Seoul">Seoul</option>
                     <option value="Monaco">Monaco</option>
-                    <option value="Practice Range">Practice Range</option>
                 </select>
 
                 <select name="class" id="class" required>
@@ -55,6 +54,7 @@
 
             <div class="flex-container">
                 <div class="input-container">
+                    <h3>GAME STATS</h3>
                     <div class="stats">
                         <label for="elims">E</label>
                         <input id="elims" name="elims" type="number" required>
@@ -72,11 +72,11 @@
                         <input id="revives" name="revives" type="number" required>
                     </div>
                 </div>
+                <div class="vertical-line"></div>
                 <div class="checkBox-container">
                     <h3>WEAPONS USED (MAX 5)</h3>
                     <div class="dynamic-container" id="favorite-weapon">
                         <!-- div is populated with checkboxes depending on what class is selected -->
-                        <h3>*SELECT A CLASS*</h3>
                     </div>
                 </div>
             </div>
@@ -101,57 +101,60 @@
                 <h3>
                     STATS
                 </h3>
-                <div id="summary"></div>
                  <div class="stats-grid-4col">
-                    <div class="elims">
+                    <div>
                         <h3>Eliminations</h3>
-                        <div id="elims">20</div>
+                        <div id="elimsSum" class="stats-displayed-numbers"></div>
                     </div>
-                    <div class="assists">
+                    <div>
                         <h3>Assists</h3>
-                        <div id="assists">2</div>
+                        <div id="assistsSum" class="stats-displayed-numbers"></div>
                     </div>
-                    <div class="deaths">
+                    <div>
                         <h3>Deaths</h3>
-                        <div id="deaths">2</div>
+                        <div id="deathsSum" class="stats-displayed-numbers"></div>
                     </div>
-                    <div class="revives">
+                    <div>
                         <h3>Revives</h3>
-                        <div id="revives">2</div>
+                        <div id="revivesSum" class="stats-displayed-numbers"></div>
                     </div>
                 </div>
                 <div class="line"></div>
                 <div class="stats-grid-4col">
-                    <div class="kd">
+                    <div>
                         <h3>K/D</h3>
-                        <div id="kd">2.1</div>
+                        <div id="kd" class="stats-displayed-numbers"></div>
                     </div>
-                    <div class="kda">
+                    <div>
                         <h3>KDA</h3>
-                        <div id="kda">11.0</div>
+                        <div id="kda" class="stats-displayed-numbers"></div>
                     </div>
-                    <div class="kpg">
+                    <div>
                         <h3>KPG</h3>
-                        <div id="kpg">4.0</div>
+                        <div id="kpg" class="stats-displayed-numbers"></div>
                     </div>
-                    <div class="win-rate">
+                    <div>
                         <h3>WIN RATE</h3>
-                        <div id="win-rate">50%</div>
+                        <div id="win-rate" class="stats-displayed-numbers"></div>
                     </div>
                  </div>
                  <div class="line"></div>
-                 <div class="stats-grid-3col">
-                    <div class="fav-Map">
+                 <div class="stats-grid-4col">
+                    <div>
                         <h3>FAV MAP</h3>
-                        <div id="fav-map">KYOTO</div>
+                        <div id="fav-stadium" class="stats-displayed-numbers"></div>
                     </div>
-                    <div class="fav-Class">
+                    <div>
                         <h3>FAV CLASS</h3>
-                        <div id="fav-class">HEAVY</div>
+                        <div id="fav-class" class="stats-displayed-numbers"></div>
                     </div>
-                    <div class="fav-Weapon">
+                    <div>
                         <h3>FAV WEAPON</h3>
-                        <div id="fav-weapon">M60</div>
+                        <div id="fav-weapon" class="stats-displayed-numbers">M60</div>
+                    </div>
+                    <div>
+                        <h3>WT POINTS</h3>
+                        <div id="points-earned" class="stats-displayed-numbers"></div>
                     </div>
                  </div>
 

@@ -2,6 +2,39 @@ let totalElims = 0;
 let totalAssists = 0;
 let totalDeaths = 0;
 let totalRevives = 0;
+let totalGames = 0;
+let firstPlaceCount = 0;
+let totalPoints = 0;
+
+let pointSystem = new Map([
+    ["first", 25],
+    ["second", 14],
+    ["third", 6],
+    ["fourth", 6],
+    ["fifth", 2],
+    ["sixth", 2],
+    ["seventh", 2],
+    ["eighth", 2]
+]);
+
+let favStadium = new Map([
+    ["NOZOMI/CITADEL", 0],
+    ["Las Vegas Stadium", 0],
+    ["Bernal", 0],
+    ["Fortune Stadium", 0],
+    ["Kyoto", 0],
+    ["SYS$HORIZON", 0],
+    ["Las Vegas", 0],
+    ["Skyway Stadium", 0],
+    ["Seoul", 0],
+    ["Monaco", 0]
+]);
+
+let favClass = new Map([
+    ["Light", 0],
+    ["Medium", 0],
+    ["Heavy", 0]
+]);
 
 document.getElementById("form").addEventListener('submit', function(e){
     e.preventDefault();
@@ -10,36 +43,70 @@ document.getElementById("form").addEventListener('submit', function(e){
     const form = e.target;
     const formData = new FormData(form);
 
-    const stadium = formData.get('stadium');
-    const build = formData.get('class');
+    
     const placement = formData.get('placement');
     const elims = formData.get('elims');
     const assists = formData.get('assists');
     const deaths = formData.get('deaths');
     const revives = formData.get('revives');
+    const stadium = formData.get('stadium');
+    const build = formData.get('class');
     const favWeapon = formData.get('favWeapon');
 
+    totalGames += 1;
     totalElims += parseInt(elims) || 0;
     totalAssists += parseInt(assists) || 0;
     totalDeaths += parseInt(deaths) || 0;
     totalRevives += parseInt(revives) || 0;
 
-    const summary = document.getElementById("summary");
-    summary.innerHTML = `
-        <p><strong>Stadium:</strong> ${stadium}</p>
-        <p><strong>Class:</strong> ${build}</p>
-        <p><strong>Placement:</strong> ${placement}</p>
-        <p><strong>Eliminations:</strong> ${totalElims}</p>
-        <p><strong>Assists:</strong> ${totalAssists}</p>
-        <p><strong>Deaths:</strong> ${totalDeaths}</p>
-        <p><strong>Revives:</strong> ${totalRevives}</p>
-        <p><strong>Favorite Weapon:</strong> ${favWeapon}</p>
-    `;
+    if (placement === "first") {
+        firstPlaceCount += 1;
+    }
+
+    totalPoints += pointSystem.get(placement) || 0;
+
+    const stadiumPlayed = document.getElementById("stadium").value;
+    favStadium.set(stadiumPlayed, (favStadium.get(stadiumPlayed) || 0) + pointSystem.get(placement) || 0);
+
+    const chosenClass = document.getElementById("class").value;
+    favClass.set(chosenClass, (favClass.get(chosenClass) || 0) + 1);
+
+    let maxStadiumKey = null;
+    let maxStadiumValue = 0;
+    for (const [key, value] of favStadium.entries()) {
+        if (key && value > maxStadiumValue) {
+            maxStadiumValue = value;
+            maxStadiumKey = key;
+        }
+    }
+
+    let maxClassKey = null;
+    let maxClassValue = 0;
+    for (const [key, value] of favClass.entries()) {
+        if (key && value > maxClassValue) {
+            maxClassValue = value;
+            maxClassKey = key;
+        }
+    }
+    
+    document.getElementById("elimsSum").innerHTML = `${totalElims}`;
+    document.getElementById("assistsSum").innerHTML = `${totalAssists}`;
+    document.getElementById("deathsSum").innerHTML = `${totalDeaths}`;
+    document.getElementById("revivesSum").innerHTML = `${totalRevives}`;
+    document.getElementById("kd").innerHTML = `${(totalElims / (totalDeaths || 1)).toFixed(2)}`;
+    document.getElementById("kda").innerHTML = `${((totalElims + totalAssists) / (totalDeaths || 1)).toFixed(2)}`;
+    document.getElementById("kpg").innerHTML = `${(totalElims / (totalGames || 1)).toFixed(2)}`;
+    document.getElementById("win-rate").innerHTML = `${(firstPlaceCount / (totalGames || 1)).toFixed(2)}`;
+
+    document.getElementById("fav-stadium").innerHTML = maxStadiumValue > 0 ? `${maxStadiumKey}` : "N/A";
+    document.getElementById("fav-class").innerHTML = maxClassValue > 0 ? `${maxClassKey}` : "N/A";
+    document.getElementById("points-earned").innerHTML = `${totalPoints}`;
     form.reset();
 });
 
-document.getElementById("class").addEventListener('change', function(e) {
-    const selectedClass = e.target.value;
+function weaponsUsed() {
+    const classSelect = document.getElementById("class");
+    const selectedClass = classSelect.value;
     const favWeapon = document.getElementById("favorite-weapon");
     if (selectedClass === "Light") {
         favWeapon.innerHTML = `
@@ -87,10 +154,14 @@ document.getElementById("class").addEventListener('change', function(e) {
         `;
     } else {
         favWeapon.innerHTML = `
-            <h3>SELECT A CLASS</h3>
+            <h2>*SELECT A CLASS*</h2>
         `;
     }
-});
+}
+
+document.getElementById("class").addEventListener('change', weaponsUsed);
+document.addEventListener('DOMContentLoaded', weaponsUsed);
+
 
 document.addEventListener('change', function(e) {
     if (e.target.name === 'favWeapon' && e.target.type === 'checkbox') {
