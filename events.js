@@ -17,24 +17,9 @@ let pointSystem = new Map([
     ["eighth", 2]
 ]);
 
-let favStadium = new Map([
-    ["NOZOMI/CITADEL", 0],
-    ["Las Vegas Stadium", 0],
-    ["Bernal", 0],
-    ["Fortune Stadium", 0],
-    ["Kyoto", 0],
-    ["SYS$HORIZON", 0],
-    ["Las Vegas", 0],
-    ["Skyway Stadium", 0],
-    ["Seoul", 0],
-    ["Monaco", 0]
-]);
-
-let favClass = new Map([
-    ["Light", 0],
-    ["Medium", 0],
-    ["Heavy", 0]
-]);
+let favStadium = new Map();
+let favClass = new Map();
+let favWeapon = new Map();
 
 document.getElementById("form").addEventListener('submit', function(e){
     e.preventDefault();
@@ -49,9 +34,9 @@ document.getElementById("form").addEventListener('submit', function(e){
     const assists = formData.get('assists');
     const deaths = formData.get('deaths');
     const revives = formData.get('revives');
-    const stadium = formData.get('stadium');
-    const build = formData.get('class');
-    const favWeapon = formData.get('favWeapon');
+    // const stadium = formData.get('stadium');
+    // const build = formData.get('class');
+    // const favWeapon = formData.get('favWeapon');
 
     totalGames += 1;
     totalElims += parseInt(elims) || 0;
@@ -66,10 +51,19 @@ document.getElementById("form").addEventListener('submit', function(e){
     totalPoints += pointSystem.get(placement) || 0;
 
     const stadiumPlayed = document.getElementById("stadium").value;
-    favStadium.set(stadiumPlayed, (favStadium.get(stadiumPlayed) || 0) + pointSystem.get(placement) || 0);
+    if (stadiumPlayed) {
+        favStadium.set(stadiumPlayed, (favStadium.get(stadiumPlayed) || 0) + (pointSystem.get(placement) || 0));
+    }
 
     const chosenClass = document.getElementById("class").value;
-    favClass.set(chosenClass, (favClass.get(chosenClass) || 0) + 1);
+    if (chosenClass) {
+        favClass.set(chosenClass, (favClass.get(chosenClass) || 0) + 1);
+    }
+
+    const selectedWeapons = formData.getAll('favWeapon');
+    selectedWeapons.forEach(weapon => {
+        favWeapon.set(weapon, (favWeapon.get(weapon) || 0) + 1);
+    });
 
     let maxStadiumKey = null;
     let maxStadiumValue = 0;
@@ -88,6 +82,15 @@ document.getElementById("form").addEventListener('submit', function(e){
             maxClassKey = key;
         }
     }
+
+    let maxWeaponKey = null;
+    let maxWeaponValue = 0;
+    for (const [weapon, count] of favWeapon.entries()) {
+        if (count > maxWeaponValue) {
+            maxWeaponValue = count;
+            maxWeaponKey = weapon;
+        }
+    }
     
     document.getElementById("elimsSum").innerHTML = `${totalElims}`;
     document.getElementById("assistsSum").innerHTML = `${totalAssists}`;
@@ -100,6 +103,7 @@ document.getElementById("form").addEventListener('submit', function(e){
 
     document.getElementById("fav-stadium").innerHTML = maxStadiumValue > 0 ? `${maxStadiumKey}` : "N/A";
     document.getElementById("fav-class").innerHTML = maxClassValue > 0 ? `${maxClassKey}` : "N/A";
+    document.getElementById("fav-weapon").innerHTML = maxWeaponValue > 0 ? `${maxWeaponKey} (${maxWeaponValue})` : "N/A";
     document.getElementById("points-earned").innerHTML = `${totalPoints}`;
     form.reset();
 });
